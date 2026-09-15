@@ -180,55 +180,64 @@ app.post('/delete/:id', async function (req, res) {
 //===========================Route cho POST ROute cho CRUD - READ========SEARCH BAR====================
 app.get('/search', async function (req, res) {
     const keyword = req.query.keyword;
-    const movies = await Movie.find({
-
-        title: {
-            $regex: keyword,
-            $options: "i"
-        }
-
+    const book = await Book.find({
+        $or: [
+            {
+                title: {
+                    $regex: keyword,
+                    $options: "i"
+                }
+            },
+            {
+                author: {
+                    $regex: keyword,
+                    $options: "i"
+                }
+            }
+        ]
+    });
+    res.render('list', {
+        book,
+        page: "home"
     });
 
-    res.render('index', {
-        movies
-    });
 });
 
 
-
-
-
-
 //===========================Route cho POST ROute cho CRUD - READ========Filter ASC, DESC, A-Z====================
-app.get('/sort', async function(req,res){
+app.get('/sort', async function (req, res) {
     const type = req.query.type;
-    let movies;
-    if(type=="AZ"){
-        movies = await Movie.find()
-        .sort({
-            title:1
-        });
+    let book;
+    if (type == "AZ") {
+        book = await Book.find()
+            .sort({
+                title: 1
+            });
     }
-    else if(type=="ZA"){
-        movies = await Movie.find()
-        .sort({
-            title:-1
-        });
+
+    else if (type == "ZA") {
+        book = await Book.find()
+            .sort({
+                title: -1
+            });
     }
-    else if(type=="ASC"){
-        movies = await Movie.find()
-        .sort({
-            year:1
-        });
+
+    else if (type == "ASC") {
+        book = await Book.find()
+            .sort({
+                year: 1
+            });
     }
-    else if(type=="DESC"){
-        movies = await Movie.find()
-        .sort({
-            year:-1
-        });
+
+    else if (type == "DESC") {
+        book = await Book.find()
+            .sort({
+                year: -1
+            });
     }
-    res.render('index',{
-        movies
+    res.render('list', {
+        book,
+        page: "home"
     });
 });
 
