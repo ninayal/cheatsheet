@@ -1,0 +1,12 @@
+<header class="header-site">
+    <img src="/images/logo.png" alt="logo" width="64" height="64">
+    <nav class="breadcrumb">
+        <% if (typeof page !== "undefined" && page == "home") {%>
+            <a href="/">Home Page</a>
+        <%} else if (typeof page !== "undefined" && page == "book") {%>
+            <a href="/">Home Page</a>
+            <span> > </span>
+            <a href="<%=book.title%>"><%=book.title%></a>
+        <% } %>
+    </nav>
+</header>

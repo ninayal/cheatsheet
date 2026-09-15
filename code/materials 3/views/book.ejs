@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head.ejs')%>
+<!-- Header-->
+<body class="book-layout">
+<%- include('partials/header.ejs')%>
+
+<!-- Main content-->
+<main>
+    <section class="book-main">
+        <img src="<%= book.image %>" alt="book image">
+        <div class="book-info">
+            <h3><%= book.title %></h3>
+            <h4>By <%=book.author%></h3>
+            <p><%= book.description%></p>
+            <p><%= book.category%> | Pulished in <%=book.year%></p>
+        </div>
+    </section>
+
+    <!-- Related books in the same category -->
+    <section class="related-book-layout">
+        <h3>Related Books</h3>
+        <div class="relatedbook-container">
+            <% relatedbook.forEach(relatedbook=> {%>
+                <% if ( book.title != relatedbook.title ) {%>
+                <div class="relatedbook-card" >
+                    <div class="relatedbook-content" >
+                        <p><%=relatedbook.title%> By <%=relatedbook.author%></p>
+                    </div>
+                    <img src="<%=relatedbook.image%>"alt="related book">
+                </div>
+                <% } %>
+            <% }) %>
+        </div>
+    </section>
+
+    <!-- Back button here -->
+    <form action="/" method="GET">
+        <button id="back-button" type="submit" >Back</button>
+    </form>
+    
+  </main>
+    
+ <!-- Footer -->
+        <%- include('partials/footer.ejs')%>
+
+    </div>
+
+<!-- Including Boostrap JS -->
+<%- include('partials/scripts.ejs')%>
+
+</body>
+</html>

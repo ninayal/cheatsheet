@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head.ejs')%>
+
+    <body>
+        <div class="container mx-auto min-vh-100 d-flex flex-column">
+
+            <!-- Header, the first section of the page-->
+            <%- include('partials/header.ejs')%>
+
+                <!-- Main content -->
+                <main class="page-layout">
+
+                    <!-- Your profile-->
+                    <aside id="profile">
+                        <div class="profile-img">
+                            <img src="images/profile.png" alt="profile" height="250">
+                        </div>
+                        <div>
+                            <div class="mb-4">
+                                <span>Hi, I'm</span>
+                                <h1>Peter John</h1>
+                            </div>
+                            <div>
+                                <h2>v1234567</h2>
+                                <h2>peter.john@rmit.edu.vn</h2>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- The reading list is shown here-->
+                    <section id="reading-list">
+                        <h2 class="reading-title">Recommended <b>READING LIST</b></h2>
+
+
+                        <!----_Refresh button-->
+                        <form action="/" method="POST">
+                            <button id="refresh-button" type="submit">Refresh</button>
+                        </form>
+
+
+
+                        <!-----Search bar & Sort title A-Z, ASC, DESC -->
+                        <form action="/search" method="GET">
+
+                            <input type="text" name="keyword" placeholder="Search movie...">
+
+                            <button type="submit">
+                                Search
+                            </button>
+
+                        </form>
+
+
+                        <form action="/sort" method="GET">
+
+                            <select name="type">
+
+                                <option value="AZ">
+                                    Title A-Z
+                                </option>
+
+                                <option value="ZA">
+                                    Title Z-A
+                                </option>
+
+                                <option value="ASC">
+                                    Year Ascending
+                                </option>
+
+                                <option value="DESC">
+                                    Year Descending
+                                </option>
+
+                            </select>
+
+                            <button type="submit">
+                                Sort
+                            </button>
+
+                        </form>
+
+
+                        <!---==================Filter Sort - CRUD - READ==================-->
+                        <form action="/filter" method="get">
+                            <select name="category" id="">
+                                <option value="ALL">ALL</option>
+                                <option value="TEXTBOOK">TEXTBOOK</option>
+                                <option value="PHILOSOPHY">PHILOSOPHY</option>
+                                <option value="NOVEL">NOVEL</option>
+                            </select>
+                            <button type="submit">Sort</button>
+                        </form>
+
+
+                        <!---===================ADD Method - CRUD=====================Add new book-->
+                        <form action="/add" method="POST">
+                            <input type="text" name="title" placeholder="Book title" required>
+                            <input type="text" name="author" placeholder="Author" required>
+
+                            <!---Drop list-->
+                            <select name="category" required>
+
+                                <option value="TEXTBOOK">
+                                    TEXTBOOK
+                                </option>
+                                <option value="PHILOSOPHY">
+                                    PHILOSOPHY
+                                </option>
+                                <option value="NOVEL">
+                                    NOVEL
+                                </option>
+                            </select>
+                            <input type="number" name="year" placeholder="Year" required>
+                            <input type="text" name="image" placeholder="Image URL" required>
+                            <input type="text" name="description" placeholder="Description" required>
+                            <button type="submit">
+                                Add Book
+                            </button>
+                        </form>
+
+
+
+                        <div class="book">
+                            <h3>Monday-Wednesday</h3>
+                            <% book.forEach(book=> { %>
+                                <% if (book.category=="TEXTBOOK" ) {%>
+                                    <div class="book-card">
+                                        <div class="book-info">
+                                            <h3><a href="book/<%= book.title %>">
+                                                    <%=book.title%>
+                                                </a></h3>
+                                            <p>
+                                                <%=book.description%>
+                                            </p>
+                                            <p>
+                                                <%=book.category%>
+                                            </p>
+                                        </div>
+                                        <img class="book-img" src="<%=book.image%>" alt="<%=book.title%>">
+                                    </div>
+                                    <!-----============================CRUD - Update - Edit thông tin sách===============-->
+                                    <!-- Tại sao dùng _id?
+                        MongoDB tự tạo:
+                        Ví dụ:
+                        {
+                        _id:"67192abc123",
+                        title:"Clean Code",
+                        author:"Robert Martin"
+                        }
+                        title có thể trùng. -->
+                                    <!-- Ví dụ:
+                        Book 1:
+                        title: Java
+                        Book 2:
+                        title: Java
+                        Nhưng:
+                        _id khác nhau
+                        Nên CRUD thường dùng:
+                        /edit/:id -->
+                                    <a href="/edit/<%=book._id%>">
+                                        Edit
+                                    </a>
+
+                                    <!----Button Delete---->
+                                    <form action="/delete/<%=book._id%>" method="POST">
+                                        <button type="submit">
+                                            Delete
+                                        </button>
+                                    </form>
+
+                                    <% } %>
+                                        <% }) %>
+                                            <h3>Thursday-Friday</h3>
+                                            <% book.forEach(book=> {%>
+                                                <% if (book.category=="PHILOSOPHY" ) {%>
+                                                    <div class="book-card">
+                                                        <div class="book-info">
+                                                            <h3><a href="book/<%= book.title %>">
+                                                                    <%=book.title%>
+                                                                </a></h3>
+                                                            <p>
+                                                                <%=book.description%>
+                                                            </p>
+                                                            <p>
+                                                                <%=book.category%>
+                                                            </p>
+                                                        </div>
+                                                        <img class="book-img" src="<%=book.image%>"
+                                                            alt="<%=book.title%>">
+                                                    </div>
+
+                                                    <!----Button edit----->
+                                                    <a href="/edit/<%=book._id%>">
+                                                        Edit
+                                                    </a>
+
+
+                                                    <!----Button Delete---->
+                                                    <form action="/delete/<%=book._id%>" method="POST">
+                                                        <button type="submit">
+                                                            Delete
+                                                        </button>
+                                                    </form>
+
+                                                    <% } %>
+                                                        <% }) %>
+                                                            <h3>Saturday-Sunday</h3>
+                                                            <% book.forEach(book=> {%>
+                                                                <% if (book.category=="NOVEL" ) {%>
+                                                                    <div class="book-card">
+                                                                        <div class="book-info">
+                                                                            <h3><a href="book/<%= book.title %>">
+                                                                                    <%=book.title%>
+                                                                                </a></h3>
+                                                                            <p>
+                                                                                <%=book.description%>
+                                                                            </p>
+                                                                            <p>
+                                                                                <%=book.category%>
+                                                                            </p>
+                                                                        </div>
+                                                                        <img class="book-img" src="<%=book.image%>"
+                                                                            alt="<%=book.title%>">
+                                                                    </div>
+                                                                    <!----Button Edit----->
+                                                                    <a href="/edit/<%=book._id%>">
+                                                                        Edit
+                                                                    </a>
+
+                                                                    <!----Button Delete---->
+                                                                    <form action="/delete/<%=book._id%>" method="POST">
+                                                                        <button type="submit">
+                                                                            Delete
+                                                                        </button>
+                                                                    </form>
+
+
+
+                                                                    <%}%>
+                                                                        <%})%>
+                        </div>
+                    </section>
+                </main>
+
+                <!-- Footer -->
+                <%- include('partials/footer.ejs')%>
+        </div>
+
+
+        <!-- Including Boostrap JS -->
+        <%- include('partials/scripts.ejs')%>
+
+    </body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Edit Book</h1>
+    <form action="/edit/<%=book._id%>" method="POST">
+        <label>
+            Title
+        </label>
+        <input type="text" name="title" value="<%=book.title%>">
+        <label>
+            Author
+        </label>
+        <input type="text" name="author" value="<%=book.author%>">
+        <label>
+            Year
+        </label>
+        <input type="number" name="year" value="<%=book.year%>">
+        <label>
+            Description
+        </label>
+        <textarea name="description">
+<%=book.description%>
+</textarea>
+        <button type="submit">
+            Update
+        </button>
+    </form>
+</body>
+
+</html>
