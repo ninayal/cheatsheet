@@ -1,0 +1,124 @@
+/*Global */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+/*====== Header =====*/
+header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 25px 0;
+}
+
+header nav {
+  text-decoration: none;
+  padding: 8px 12px;
+}
+
+header nav a:hover {
+  background-color: aliceblue;
+  color: aqua;
+}
+
+/* Footer*/
+footer {
+  text-align: center;
+  padding-top: 25px;
+}
+
+/**=====================================
+========List Page ======================/
+
+
+/*Main page */
+
+.list-main {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 45px;
+}
+
+
+
+/*Profile*/
+
+.list-main #profile {
+  background-color: navy;
+  color: aliceblue;
+  min-height: 700px;
+  border-radius: 15px;
+}
+
+.profile-image {
+  padding: 20px 30px;
+  text-align: center;
+}
+
+.profile-image img {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+}
+
+.information {
+  padding: 20px 30px;
+}
+
+/*Section content*/
+
+
+.section-content {
+  border: 1px solid black;
+  display: flex;
+  border-radius: 5px;
+}
+
+.section-content #title {
+  font-size: 25px;
+  color: pink;
+
+}
+
+.section-content #des {
+  font-size: 16px;
+}
+
+.section-content #category {
+  color: grey;
+}
+
+.section img {
+  width: 250px;
+  height: 200px;
+  padding: 10px 20px;
+  border-radius: 10%;
+}
+
+#Recommended {
+  text-align: right;
+}
+
+#button {
+  background-color: rgb(159, 159, 223);
+  color: aliceblue;
+  border-radius: 20px;
+  border: none;
+  display: block;
+  text-align: center;
+  /*align word*/
+  margin-left: auto;
+  /*move from left to right*/
+  width: 80px;
+  height: 35px;
+}

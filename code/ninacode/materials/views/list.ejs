@@ -1,0 +1,113 @@
+<!--head-->
+<%-include ('./partials/head.ejs')%>
+
+    <body>
+        <div class="container mx-auto min-vh-100 d-flex flex-column">
+
+            <!-- Header, the first section of the page-->
+            <%-include ('./partials/header.ejs')%>
+
+                <!-- Main content -->
+                <main class="list-main">
+
+                    <!-- Your profile-->
+                    <aside id="profile">
+                        <div class="profile-image">
+                            <img src="images/profile.png" alt="profile" height="250">
+                        </div>
+                        <div class="information">
+                            <div class="mb-4">
+                                <span>Hi, I'm</span>
+                                <h1>Peter John</h1>
+                            </div>
+                            <div>
+                                <h2>v1234567</h2>
+                                <h2>peter.john@rmit.edu.vn</h2>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- The reading list is shown here-->
+                    <section id="reading-list">
+                        
+                        <h2 id="Recommended">Recommended <b>READING LIST</b></h2>
+                        <button type="submit" id="button">
+                            Refresh
+                        </button>
+                        <div class="section">
+                            <h3>Monday-Wednesday</h3>
+                            <% book.forEach(book=> {%>
+                                <% if (book.category=="TEXTBOOK" ) {%>
+                                    <div class="section-content">
+                                        <div>
+                                            <span id="title">
+                                                <%= book.title %>
+                                            </span>
+                                            <p id="des">
+                                                <%= book.description%>
+                                            </p>
+                                            <p id="category">
+                                                <%=book.category%>
+                                            </p>
+                                        </div>
+                                        <img src="<%=book.image%>" alt="" height="80">
+                                    </div>
+                                    <%}%>
+                                        <%})%>
+                        </div>
+
+                        <div class="section">
+                            <h3>Thursday-Friday</h3>
+                            <% book.forEach(book=> {%>
+                                <% if (book.category=="PHILOSOPHY" ) {%>
+                                    <div class="section-content">
+                                        <div>
+                                            <span id="title">
+                                                <%= book.title %>
+                                            </span>
+                                            <p id="des">
+                                                <%= book.description%>
+                                            </p>
+                                            <p id="category">
+                                                <%=book.category%>
+                                            </p>
+                                        </div>
+                                        <img src="<%=book.image%>" alt="" height="80">
+                                    </div>
+                                    <%}%>
+                                        <%})%>
+                        </div>
+
+                        <div class="section">
+                            <h3>Saturday-Sunday</h3>
+                            <% book.forEach(book=> {%>
+                                <% if (book.category=="NOVEL" ) {%>
+                                    <div class="section-content">
+                                        <div>
+                                            <span id="title">
+                                                <%= book.title %>
+                                            </span>
+                                            <p id="des">
+                                                <%= book.description%>
+                                            </p>
+                                            <p id="category">
+                                                <%=book.category%>
+                                            </p>
+                                        </div>
+                                        <img src="<%=book.image%>" alt="" height="80">
+                                    </div>
+                                    <%}%>
+                                        <%})%>
+                        </div>
+
+
+
+                    </section>
+                </main>
+
+                <!-- Footer -->
+                <%- include('./partials/footer.ejs')%>
+
+    </body>
+
+    </html>
