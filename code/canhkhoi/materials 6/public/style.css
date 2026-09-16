@@ -1,7 +1,11 @@
+.header-site {
+    display: flex;
+    align-items: center;
+    gap: 20px
+}
 .page-layout {
     display: flex;
 }
-
 #profile {
     flex: 1;
     background-color: darkblue;
@@ -10,175 +14,114 @@
     min-height: 500px;
     border-radius: 15px;
 }
-
 #profile img {
     border-radius: 50%;
     height: 150px;
     width: 150px;
     object-fit: cover;
 }
-
 .profile-img {
     text-align: center;
 }
-
 #reading-list {
     flex: 2;
     padding: 20px
 }
-
 .reading-title {
     text-align: right;
 }
-
 #refresh-button {
     background-color: blue;
     color: white;
     text-align: right;
     border: none;
-    padding: 8px 20px;
+    padding: 8 20px;
     border-radius: 5px;
     margin-left: auto;
-    display: block;
+    display:block;
 }
-
 .book-card {
-    display: flex;
+    display:flex;
     gap: 20px;
     border: 1px solid;
     padding: 10px;
     border-radius: 15px;
     margin: 10px
 }
-
 .book-info {
-    flex: 1
+    flex:1
 }
-
 .book-img {
     width: 30%;
     object-fit: cover;
 }
-
 .book {
     display: flex;
     flex-direction: column;
     gap: 15px
 }
-
-.book-detail {
+.book-detail{
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
 }
-
-.book-layout {
+.book-layout{
     padding: 20px;
-
     .book-main {
         display: flex;
         flex-wrap: wrap;
         width: 100%;
         position: relative;
         margin: 10px 0;
-
         img {
             width: 100%;
             height: 600px;
             object-fit: cover;
         }
-
         .book-info {
             position: absolute;
             z-index: 0;
             padding: 60px;
-            color: white;
+            color: white; 
         }
-
         h3 {
             font-size: 65px;
         }
-
         h4 {
             font-size: 40px;
         }
-
-        p {
-            font-size: 15px;
+        p{
+            font-size: 15px ;
         }
     }
 }
-
 footer {
     text-align: center;
 }
 
-
-/* Header */
-.header-site {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    padding: 20px;
-}
-
-
-/* Breadcrumb container */
-.breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-
-/* Breadcrumb links */
-.breadcrumb a {
+.breadcrumb ol{
     text-decoration: none;
-    color: #333;
-    font-size: 24px;
-    padding: 8px 15px;
-    border-radius: 8px;
-    transition: 0.2s;
+    display: flex;
 }
 
-
-/* Hover effect */
-.breadcrumb a:hover {
-    background-color: #e3f2fd;
-    color: #1976d2;
+.breadcrumb li + li {
+    content: ">";
 }
-
-
-/* > symbol */
-.breadcrumb span {
-    font-size: 28px;
-    color: #555;
-}
-
-
-
-
-
-
-.related-book-layout {
+.related-book-layout{
     padding: 10px;
-
-    .relatedbook-container {
+    .relatedbook-container{
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3,1fr);
         flex-wrap: wrap;
         gap: 20px;
-
-        .relatedbook-card {
+        .relatedbook-card{
             position: relative;
             height: 300px;
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
+            img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             }
-
-            &::before {
+            &::before{
                 position: absolute;
                 content: "";
                 background-color: black;
@@ -187,19 +130,17 @@ footer {
                 width: 100%;
                 height: 100%;
             }
-
-            .relatedbook-content {
-                position: absolute;
-                color: white;
-                padding: 20px;
-                display: flex;
-                font-size: 40px;
-                z-index: 2;
+        .relatedbook-content {
+            position:absolute;
+            color: white;
+            padding: 20px;
+            display: flex;
+            font-size: 40px;
+            z-index: 2;
             }
         }
     }
 }
-
 #back-button {
     background-color: blue;
     color: white;
@@ -209,39 +150,4 @@ footer {
     border-radius: 5px;
     display: block;
     margin: 20px auto;
-}
-
-
-
-/*Responsive*/
-@media (max-width: 992px) {
-
-    /* Homepage layout */
-    .page-layout {
-        flex-direction: column;
-    }
-
-    #profile {
-        width: 100%;
-        min-height: auto;
-    }
-
-    #reading-list {
-        width: 100%;
-        padding: 10px;
-    }
-
-    .reading-title {
-        text-align: center;
-    }
-
-    /* Book card */
-    .book-card {
-        flex-direction: column;
-    }
-
-    .book-img {
-        width: 100%;
-        height: 250px;
-    }
 }

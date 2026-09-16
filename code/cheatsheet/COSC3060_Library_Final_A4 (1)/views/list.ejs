@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="/style.css"></head>
+<body>
+
+<header>
+<h2>Library Catalogue</h2>
+<a href="/reading-list">Reading List</a>
+</header>
+
+<h1>Library Catalogue</h1>
+
+<form action="/search">
+<input name="keyword" placeholder="Search books">
+<button>Search</button>
+</form>
+
+<div class="grid">
+
+<% books.forEach(book=>{ %>
+
+<div class="card">
+
+<img src="<%=book.image%>">
+
+<h3><%=book.title%></h3>
+
+<p><%=book.author%></p>
+
+<a href="/book/<%=book.title%>">
+View Details
+</a>
+
+</div>
+
+<% }) %>
+
+</div>
+
+</body>
+</html>

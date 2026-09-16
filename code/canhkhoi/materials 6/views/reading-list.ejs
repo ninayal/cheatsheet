@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Reading List Manager</h1>
+
+<h2>Create New Reading List</h2>
+<form action="/reading-list/add" method="POST">
+<input name="name" placeholder="Reading list name" required>
+<button type="submit">Create</button>
+</form>
+
+<h2>Current Books</h2>
+<% if(readingList){ %>
+    <h3><%=readingList.name%></h3>
+    <% readingList.books.forEach(book=>{ %>
+        <div>
+            <h4><%=book.title%></h4>
+            <p><%=book.author%></p>
+            <img src="<%=book.image%>" width="120">
+        </div>
+    <% }) %>
+<% } %>
+
+</body>
+</html>

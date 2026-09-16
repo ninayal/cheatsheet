@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="/style.css"></head>
+<body>
+
+<h1>Reading List Manager</h1>
+
+<h2>Create Reading List</h2>
+
+<form action="/reading-list/create" method="POST">
+
+<input name="name" required placeholder="List name">
+
+<button>Create</button>
+
+</form>
+
+
+<h2>Recommended Books</h2>
+
+<% books.forEach(book=>{ %>
+
+<div class="card">
+
+<h3><%=book.title%></h3>
+<p><%=book.author%></p>
+
+
+<form action="/reading-list/add/<%=book._id%>" method="POST">
+
+<button>
+Add
+</button>
+
+</form>
+
+
+</div>
+
+<% }) %>
+
+
+</body>
+</html>

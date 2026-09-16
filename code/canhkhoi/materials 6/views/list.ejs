@@ -32,54 +32,8 @@
                     <!-- The reading list is shown here-->
                     <section id="reading-list">
                         <h2 class="reading-title">Recommended <b>READING LIST</b></h2>
-
-
-                        <!----_Refresh button-->
                         <form action="/" method="POST">
                             <button id="refresh-button" type="submit">Refresh</button>
-                        </form>
-
-
-
-                        <!-----Search bar & Sort title A-Z, ASC, DESC -->
-                        <form action="/search" method="GET">
-
-                            <input type="text" name="keyword" placeholder="Search book...">
-
-                            <button type="submit">
-                                Search
-                            </button>
-
-                        </form>
-
-
-                        <!--Sort-->
-                        <form action="/sort" method="GET">
-
-                            <select name="type">
-
-                                <option value="AZ">
-                                    Title A-Z
-                                </option>
-
-                                <option value="ZA">
-                                    Title Z-A
-                                </option>
-
-                                <option value="ASC">
-                                    Year ASC
-                                </option>
-
-                                <option value="DESC">
-                                    Year DESC
-                                </option>
-
-                            </select>
-
-                            <button type="submit">
-                                Sort
-                            </button>
-
                         </form>
 
 
@@ -171,6 +125,10 @@
                                         </button>
                                     </form>
 
+                                    <form action="/reading-list/add-book/<%=book._id%>" method="POST">
+                                        <button type="submit">Add to Reading List</button>
+                                    </form>
+
                                     <% } %>
                                         <% }) %>
                                             <h3>Thursday-Friday</h3>
@@ -205,6 +163,10 @@
                                                         </button>
                                                     </form>
 
+                                                    <form action="/reading-list/add-book/<%=book._id%>" method="POST">
+                                                        <button type="submit">Add to Reading List</button>
+                                                    </form>
+
                                                     <% } %>
                                                         <% }) %>
                                                             <h3>Saturday-Sunday</h3>
@@ -237,7 +199,9 @@
                                                                         </button>
                                                                     </form>
 
-
+                                                                    <form action="/reading-list/add-book/<%=book._id%>" method="POST">
+                                                                        <button type="submit">Add to Reading List</button>
+                                                                    </form>
 
                                                                     <%}%>
                                                                         <%})%>

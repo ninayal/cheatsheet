@@ -38,7 +38,7 @@ app.use(express.urlencoded({
 
 
 /** Routes */
-const { Book } = require('./db/bookModel');
+const { Book,ReadingList} = require('./db/bookModel');
 // Homepage endpoint that when accessed will produce a random reading list for a week
 app.get('/', async function (req, res) {
     const textbook = await Book.aggregate([
@@ -74,6 +74,34 @@ app.get('/', async function (req, res) {
         page: "home"
     });
 })
+app.get('/reading-list', async function(req,res){
+
+    const readingList = await ReadingList.findOne();
+
+    res.render('reading-list',{
+        readingList
+    });
+
+});
+app.post('/reading-list/add', async function(req,res){
+
+
+    const newReadingList = new ReadingList({
+
+        name:req.body.name,
+
+        books:[]
+
+    });
+
+
+    await newReadingList.save();
+
+
+    res.redirect('/reading-list');
+
+
+});
 
 app.post('/', async function (req, res) {
     const textbook = await Book.aggregate([
@@ -164,7 +192,7 @@ app.post('/edit/:id', async function (req, res) {
 
 
 //===========================Route cho POST ROute cho CRUD - Delete========Delete book from database====================
-app.post('/delete/:id', async function (req, res) {
+app.post('/delete/:id', async function(req,res){
 
     await Book.findByIdAndDelete(
         req.params.id
@@ -177,76 +205,32 @@ app.post('/delete/:id', async function (req, res) {
 
 
 
-//===========================Route cho POST ROute cho CRUD - READ========SEARCH BAR====================
-app.get('/search', async function (req, res) {
-    const keyword = req.query.keyword;
-    const book = await Book.find({
-        $or: [
-            {
-                title: {
-                    $regex: keyword,
-                    $options: "i"
-                }
-            },
-            {
-                author: {
-                    $regex: keyword,
-                    $options: "i"
-                }
-            }
-        ]
-    });
-    res.render('list', {
-        book,
-        page: "home"
-    });
+
+
+
+
+
+
+
+
+//===================== ADD BOOK TO READING LIST =====================
+app.post('/reading-list/add-book/:id', async function(req,res){
+
+    const book = await Book.findById(req.params.id);
+
+    const readingList = await ReadingList.findOne();
+
+    if(!readingList){
+        return res.send('Please create a reading list first');
+    }
+
+    readingList.books.push(book);
+
+    await readingList.save();
+
+    res.redirect('/reading-list');
 
 });
-
-
-//===========================Route cho POST ROute cho CRUD - READ========Filter ASC, DESC, A-Z====================
-app.get('/sort', async function (req, res) {
-    const type = req.query.type;
-    let book;
-    if (type == "AZ") {
-        book = await Book.find()
-            .sort({
-                title: 1
-            });
-    }
-
-    else if (type == "ZA") {
-        book = await Book.find()
-            .sort({
-                title: -1
-            });
-    }
-
-    else if (type == "ASC") {
-        book = await Book.find()
-            .sort({
-                year: 1
-            });
-    }
-
-    else if (type == "DESC") {
-        book = await Book.find()
-            .sort({
-                year: -1
-            });
-    }
-    res.render('list', {
-        book,
-        page: "home"
-    });
-});
-
-
-//Nếu muốn include cả search + filter vào chung thanh search thì dùng route này
-
-
-
-
 
 // Book endpoint that when accessed will show detail information about a book and related books found in the database
 app.get('/book/:title', async function (req, res) {
