@@ -1,0 +1,195 @@
+/* --- GLOBAL RESET --- */
+*, *::before, *::after {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+}
+
+body {
+ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+ background-color: #f4f6f9;
+ color: #333;
+}
+
+/* --- NAVBAR (Thanh đỏ phía trên) --- */
+#navbar {
+ background-color: #8b0000; /* Màu đỏ đô */
+ color: #ffffff;
+ padding: 12px 24px;
+ width: 100%;
+}
+
+.nav-content {
+ max-width: 1200px;
+ margin: 0 auto;
+ font-weight: bold;
+}
+
+/* --- MAIN CONTAINER (Căn giữa và tạo lề 2 bên) --- */
+#main-container {
+ max-width: 1200px;
+ margin: 30px auto;
+ padding: 0 24px; /* Tạo khoảng cách cách đều 2 mép màn hình */
+}
+
+.page-main-title {
+ font-size: 20px;
+ font-weight: bold;
+ margin-bottom: 24px;
+ color: #1a1a1a;
+}
+
+.section-heading {
+ font-size: 15px;
+ font-weight: 600;
+ margin-bottom: 12px;
+ color: #2c3e50;
+}
+
+/* --- PHẦN 1: READING LIST SECTION --- */
+#reading-list-section {
+ margin-bottom: 30px;
+}
+
+.cart-items-wrapper {
+ display: flex;
+ gap: 16px;
+}
+
+.mini-book-card {
+ background: #ffffff;
+ border: 1px solid #e1e4e8;
+ border-radius: 6px;
+ padding: 12px 16px;
+ width: 260px;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.mini-title {
+ font-size: 13px;
+ font-weight: 500;
+}
+
+.mini-action {
+ font-size: 12px;
+ color: #0366d6;
+ cursor: pointer;
+}
+
+/* --- THANH TÌM KIẾM / LỌC Ở GIỮA --- */
+#filter-search-bar {
+ display: flex;
+ gap: 12px;
+ margin-bottom: 30px;
+}
+
+.search-input {
+ flex: 1;
+ padding: 8px 12px;
+ border: 1px solid #d1d5db;
+ border-radius: 6px;
+ font-size: 14px;
+ background-color: #fff;
+}
+
+.filter-btn {
+ padding: 8px 20px;
+ background-color: #f3f4f6;
+ border: 1px solid #d1d5db;
+ border-radius: 6px;
+ font-size: 14px;
+ font-weight: 500;
+ cursor: pointer;
+}
+
+.filter-btn:hover {
+ background-color: #e5e7eb;
+}
+
+/* --- PHẦN 2: RECOMMENDED BOOKS (GRID 4 CỘT) --- */
+#recommended-section {
+ margin-bottom: 40px;
+}
+
+.book-grid {
+ display: grid;
+ grid-template-columns: repeat(4, 1fr); /* Chia đều thành 4 cột y hệt hình */
+ gap: 20px;                              /* Khoảng cách giữa các ô */
+}
+
+/* --- THẺ SÁCH (BOOK CARD) --- */
+.book-card {
+ background: #ffffff;
+ border: 1px solid #e1e4e8;
+ border-radius: 8px;
+ padding: 14px;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+ box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+ transition: transform 0.2s ease;
+}
+
+.book-card:hover {
+ transform: translateY(-3px);
+}
+
+/* Khung ảnh sách (Hình vuông tuyệt đối & nằm ở trên cùng) */
+.book-image-wrapper {
+ width: 100%;
+ aspect-ratio: 1 / 1;     /* Ép thành khung hình vuông chuẩn 100% */
+ margin-bottom: 12px;
+ border-radius: 4px;
+ overflow: hidden;
+ background-color: #f3f4f6;
+}
+
+.book-image-wrapper img {
+ width: 100%;
+ height: 100%;
+ object-fit: cover;       /* Giúp ảnh lấp đầy khung mà không bị bóp méo */
+}
+
+/* Thông tin chi tiết sách */
+.book-info {
+ display: flex;
+ flex-direction: column;
+ gap: 4px;
+ margin-bottom: 12px;
+}
+
+.book-title {
+ font-size: 13px;
+ font-weight: bold;
+ color: #111;
+ margin-bottom: 2px;
+}
+
+.book-info p {
+ font-size: 11px;
+ color: #555;
+}
+
+/* Nút "View Details" ở đáy card */
+.btn-view {
+ width: 100%;
+ padding: 6px 0;
+ background-color: #ffffff;
+ border: 1px solid #d1d5db;
+ border-radius: 4px;
+ text-align: center;
+ font-size: 12px;
+ font-weight: 500;
+ color: #24292f;
+ cursor: pointer;
+ transition: background-color 0.15s;
+}
+
+.btn-view:hover {
+ background-color: #f3f4f6;
+}
+
+
